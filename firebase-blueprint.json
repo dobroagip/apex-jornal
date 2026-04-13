@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "userProfile": {
+      "title": "User Profile",
+      "description": "Stores extended user information and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"], "description": "User access level" },
+        "favorites": { 
+          "type": "array", 
+          "items": { "type": "string" },
+          "description": "List of article IDs marked as favorites" 
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "article": {
+      "title": "Article",
+      "description": "Magazine article content",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "content": { "type": "object" },
+        "image": { "type": "string", "description": "URL to main image" },
+        "category": { "type": "string" },
+        "author": { "type": "string" },
+        "authorId": { "type": "string" },
+        "published": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "authorId"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "userProfile",
+      "description": "Private user profile data"
+    },
+    "/articles/{articleId}": {
+      "schema": "article",
+      "description": "Public and draft articles"
+    }
+  }
+}
