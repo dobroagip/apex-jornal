@@ -48,8 +48,8 @@ export default function Navbar() {
   }, []);
 
   const menuVariants = {
-    closed: { x: '-100%', transition: { type: 'spring', stiffness: 300, damping: 30 } },
-    open: { x: 0, transition: { type: 'spring', stiffness: 300, damping: 30 } }
+    closed: { x: -100, transition: { type: "spring" as const, stiffness: 300, damping: 30 } },
+    open: { x: 0, transition: { type: "spring" as const, stiffness: 300, damping: 30 } }
   };
 
   const navLinks = [
@@ -119,7 +119,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute right-0 mt-3 w-48 bg-racing-black/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] z-[100]"
+                  className="absolute right-0 mt-3 w-48 bg-racing-black/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] z-100"
                 >
                   <div className="py-3">
                     {languages.map((lang) => (
@@ -168,7 +168,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute right-0 mt-3 w-64 bg-racing-black/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] z-[100]"
+                    className="absolute right-0 mt-3 w-64 bg-racing-black/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] z-100"
                   >
                     <div className="p-5 border-b border-white/10">
                       <p className="text-[11px] font-black uppercase tracking-widest text-white truncate">{user.displayName}</p>
@@ -206,14 +206,14 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 bg-racing-black/80 backdrop-blur-md z-[60]"
+              className="fixed inset-0 bg-racing-black/80 backdrop-blur-md z-60"
             />
             <motion.div 
               variants={menuVariants}
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-racing-black border-r border-white/10 z-[70] p-8 flex flex-col"
+              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-racing-black border-r border-white/10 z-70 p-8 flex flex-col"
             >
               <div className="flex justify-between items-center mb-16">
                 <h1 className="text-xl font-bold tracking-[0.2em] uppercase italic">

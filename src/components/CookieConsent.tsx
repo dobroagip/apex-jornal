@@ -25,7 +25,7 @@ const CookieConsent: React.FC = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-8 left-8 right-8 md:left-auto md:right-8 md:w-96 z-[100]"
+          className="fixed bottom-8 left-8 right-8 md:left-auto md:right-8 md:w-96 z-100"
         >
           <div className="bg-racing-black/90 backdrop-blur-2xl border border-white/10 p-6 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <div className="flex items-start gap-4">

@@ -44,7 +44,7 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-racing-red pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-racing-red pointer-events-none z-9999 hidden md:block"
         style={{
           x: cursorX,
           y: cursorY,
@@ -54,7 +54,7 @@ export default function CustomCursor() {
         transition={{ type: 'spring', ...springConfig }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-1 h-1 bg-racing-red rounded-full pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-1 h-1 bg-racing-red rounded-full pointer-events-none z-9999 hidden md:block"
         animate={{
           x: mousePosition.x - 2,
           y: mousePosition.y - 2,

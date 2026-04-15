@@ -57,7 +57,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack }) => {
     >
       {/* Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-racing-red z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-racing-red z-60 origin-left"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -93,7 +93,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack }) => {
             className="w-full h-full object-cover object-[center_30%] md:object-center brightness-[0.6]"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-racing-black via-transparent to-racing-black/20 md:to-racing-black/40" />
+          <div className="absolute inset-0 bg-linear-to-t from-racing-black via-transparent to-racing-black/20 md:to-racing-black/40" />
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10 pt-24 md:pt-48">
@@ -104,18 +104,18 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack }) => {
             className="max-w-5xl"
           >
             <div className="flex items-center gap-4 mb-6 md:mb-8">
-              <span className="w-12 h-[1px] bg-racing-red" />
+              <span className="w-12 h-px bg-racing-red" />
               <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-racing-red">
                 {article.category}
               </span>
             </div>
             <h1 
-              className="text-fluid-hero font-bold uppercase italic leading-[0.95] md:leading-[1] mb-8 md:mb-12 tracking-tighter [hyphens:auto] [overflow-wrap:anywhere]"
+              className="text-fluid-hero font-bold uppercase italic leading-[0.95] md:leading-none mb-8 md:mb-12 tracking-tighter [hyphens:auto] wrap-anywhere"
               style={{ '--font-scale': titleScale } as React.CSSProperties}
             >
               {fullTitle}
             </h1>
-            <p className="text-lg md:text-3xl text-gray-300 font-medium max-w-3xl leading-relaxed italic border-l-2 border-racing-red pl-6 md:pl-10 [hyphens:auto] [overflow-wrap:anywhere]">
+            <p className="text-lg md:text-3xl text-gray-300 font-medium max-w-3xl leading-relaxed italic border-l-2 border-racing-red pl-6 md:pl-10 [hyphens:auto] wrap-anywhere">
               {article.subtitle || article.excerpt}
             </p>
           </motion.div>
@@ -151,7 +151,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack }) => {
                   "Driving the {article.title} isn't just about speed; it's about a dialogue with physics. Every vibration tells a story of mechanical perfection."
                 </p>
                 <div className="flex items-center gap-5">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-racing-red to-racing-black border border-white/10" />
+                  <div className="w-12 h-12 rounded-full bg-linear-to-br from-racing-red to-racing-black border border-white/10" />
                   <div>
                     <p className="text-sm font-black uppercase tracking-wider">{article.author}</p>
                     <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{t('article.expert')}</p>
@@ -188,7 +188,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack }) => {
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                             referrerPolicy="no-referrer"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-racing-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute inset-0 bg-linear-to-t from-racing-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       )}
                     </React.Fragment>

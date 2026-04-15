@@ -24,7 +24,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight break-words;
+    @apply font-display tracking-tight wrap-break-word;
     /* Better handling for German/Ukrainian long words */
     hyphens: auto;
     overflow-wrap: break-word;
@@ -64,7 +64,7 @@
   }
 
   .btn-racing-fill {
-    @apply absolute inset-0 bg-racing-red translate-x-[-100%] skew-x-[-15deg] transition-transform duration-500 ease-out group-hover:translate-x-[-10%] group-hover:scale-x-150;
+    @apply absolute inset-0 bg-racing-red translate-x-full skew-x-[-15deg] transition-transform duration-500 ease-out group-hover:translate-x-[-10%] group-hover:scale-x-150;
   }
 
   .btn-racing::after {

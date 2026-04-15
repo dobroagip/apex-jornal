@@ -9,7 +9,7 @@ const LegalPages: React.FC = () => {
       <div className="container mx-auto max-w-4xl space-y-20">
         {/* GDPR Section */}
         <section id="gdpr" className="space-y-8">
-          <h1 className="text-4xl md:text-6xl font-black uppercase italic italic tracking-tighter border-l-4 border-racing-red pl-6">
+          <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter border-l-4 border-racing-red pl-6">
             GDPR / Privacy Policy
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
@@ -30,7 +30,7 @@ const LegalPages: React.FC = () => {
 
         {/* Impressum Section */}
         <section id="impressum" className="space-y-8">
-          <h1 className="text-4xl md:text-6xl font-black uppercase italic italic tracking-tighter border-l-4 border-racing-red pl-6">
+          <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter border-l-4 border-racing-red pl-6">
             Impressum / Legal Notice
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">

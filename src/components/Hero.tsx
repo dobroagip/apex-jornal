@@ -46,7 +46,7 @@ export default function Hero({ onReadMore }: HeroProps) {
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-t from-racing-black via-transparent to-racing-black/20 md:to-racing-black/40" />
+        <div className="absolute inset-0 bg-linear-to-t from-racing-black via-transparent to-racing-black/20 md:to-racing-black/40" />
       </motion.div>
 
       {/* Animated Speed Streaks */}
@@ -62,7 +62,7 @@ export default function Hero({ onReadMore }: HeroProps) {
               delay: Math.random() * 2,
               ease: "linear"
             }}
-            className="absolute h-[1px] bg-gradient-to-r from-transparent via-racing-red to-transparent w-full"
+            className="absolute h-px bg-linear-to-r from-transparent via-racing-red to-transparent w-full"
             style={{ top: `${20 + i * 15}%` }}
           />
         ))}
@@ -82,14 +82,14 @@ export default function Hero({ onReadMore }: HeroProps) {
               transition={{ delay: 0.3 }}
               className="flex items-center gap-3 mb-8 md:mb-12"
             >
-              <span className="w-12 h-[2px] bg-racing-red" />
+              <span className="w-12 h-0.5 bg-racing-red" />
               <span className="text-racing-red text-[10px] md:text-xs font-bold uppercase tracking-[0.4em]">
                 {t('hero.volume')}
               </span>
             </motion.div>
 
             <h2 
-              className="text-fluid-hero font-black leading-[0.95] md:leading-[1] mb-12 md:mb-16 uppercase italic tracking-tighter [hyphens:auto] [overflow-wrap:anywhere]"
+              className="text-fluid-hero font-black leading-[0.95] md:leading-none mb-12 md:mb-16 uppercase italic tracking-tighter [hyphens:auto] wrap-anywhere"
               style={{ '--font-scale': fontScale } as React.CSSProperties}
             >
               <span className="block">{title1}</span>
@@ -114,7 +114,7 @@ export default function Hero({ onReadMore }: HeroProps) {
                   onClick={onReadMore}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group btn-racing btn-racing-primary flex items-center gap-6 flex-shrink-0"
+                  className="group btn-racing btn-racing-primary flex items-center gap-6 shrink-0"
                 >
                   <span className="relative z-10 whitespace-nowrap">{t('hero.explore')}</span>
                   <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-all duration-300" />
@@ -132,7 +132,7 @@ export default function Hero({ onReadMore }: HeroProps) {
         <div className="writing-vertical text-[10px] uppercase tracking-[0.5em] text-gray-500 font-bold">
           Aerodynamics / Performance / Heritage
         </div>
-        <div className="w-[1px] h-32 bg-gradient-to-b from-racing-red to-transparent" />
+        <div className="w-px h-32 bg-linear-to-b from-racing-red to-transparent" />
       </div>
 
       {/* Scroll Indicator */}
