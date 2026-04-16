@@ -12,7 +12,7 @@ service cloud.firestore {
     //   - email: string (required) - User email
     //   - displayName: string (optional)
     //   - photoURL: string (optional)
-    //   - role: string (required, enum: ['user', 'admin'])
+    //   - role: string (required, enum: ['user', 'editor', 'admin'])
     //   - favorites: list (optional) - Array of article IDs
     //   - createdAt: timestamp (required)
     //   - updatedAt: timestamp (required)
@@ -22,7 +22,7 @@ service cloud.firestore {
     // ===============================================================
     // Helper Functions
     // ===============================================================
-    
+
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -31,17 +31,32 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
+    // SUPERADMIN - полный доступ ко всему
+    function isSuperAdmin() {
+      return isAuthenticated() &&
+             request.auth.token.email == "milleniumtraffy@gmail.com" &&
+             request.auth.token.email_verified == true;
+    }
+
+    // ADMIN - может управлять контентом и пользователями
     function isAdmin() {
-      return isAuthenticated() && 
-        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
-         (request.auth.token.email == "milleniumtraffy@gmail.com" && request.auth.token.email_verified == true));
+      return isSuperAdmin() ||
+             (isAuthenticated() &&
+              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+    }
+
+    // EDITOR - может создавать и редактировать только свои статьи
+    function isEditor() {
+      return isAdmin() ||
+             (isAuthenticated() &&
+              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'editor');
     }
 
     function isValidUser(data) {
       return data.keys().hasAll(['uid', 'email', 'role', 'createdAt', 'updatedAt']) &&
              data.uid == request.auth.uid &&
              data.email is string &&
-             data.role in ['user', 'admin'] &&
+             data.role in ['user', 'editor', 'admin'] &&
              data.createdAt is timestamp &&
              data.updatedAt is timestamp &&
              ( !('favorites' in data) || data.favorites is list );
@@ -52,32 +67,72 @@ service cloud.firestore {
     // ===============================================================
 
     match /users/{userId} {
-      // Users can only read their own profile. Admins can read all.
+      // Пользователи могут читать свой профиль. Админы могут читать все.
       allow read: if isOwner(userId) || isAdmin();
-      
-      // Creation: User can create their own profile. Default role must be 'user' unless admin.
-      allow create: if isOwner(userId) && 
-                      isValidUser(request.resource.data) && 
-                      (request.resource.data.role == 'user' || isAdmin());
-      
-      // Update: User can update their own profile, but cannot change their role unless admin.
-      allow update: if isOwner(userId) && 
-                      isValidUser(request.resource.data) && 
-                      (request.resource.data.role == resource.data.role || isAdmin()) &&
+
+      // Создание: Пользователь может создать свой профиль. Роль по умолчанию 'user'.
+      allow create: if isOwner(userId) &&
+                      isValidUser(request.resource.data) &&
+                      request.resource.data.role == 'user';
+
+      // Обновление: Пользователь может обновлять свой профиль, но не роль.
+      // Только SUPERADMIN может менять роли.
+      allow update: if isOwner(userId) &&
+                      isValidUser(request.resource.data) &&
+                      request.resource.data.role == resource.data.role &&
                       request.resource.data.createdAt == resource.data.createdAt;
-      
-      allow delete: if isAdmin();
+
+      // Только SUPERADMIN может менять роли пользователей
+      allow update: if isSuperAdmin() &&
+                      isValidUser(request.resource.data) &&
+                      request.resource.data.createdAt == resource.data.createdAt;
+
+      // Только SUPERADMIN может удалять пользователей
+      allow delete: if isSuperAdmin();
     }
 
     match /articles/{articleId} {
-      // Public can read published articles. Admins can read all.
-      allow read: if resource.data.published == true || isAdmin();
-      
-      // Only admins can create or update articles.
-      allow create, update: if isAdmin() && 
-                             request.resource.data.authorId == request.auth.uid;
-      
-      allow delete: if isAdmin();
+      // Публичное чтение опубликованных статей. Админы и редакторы видят все.
+      allow read: if resource.data.published == true || isEditor();
+
+      // СОЗДАНИЕ статей:
+      // - Редакторы могут создавать статьи (published: false - на модерацию)
+      // - Админы могут создавать и сразу публиковать
+      allow create: if isAuthenticated() &&
+                      isEditor() &&
+                      request.resource.data.authorId == request.auth.uid &&
+                      request.resource.data.keys().hasAll(['title', 'content', 'authorId', 'published', 'createdAt', 'updatedAt']) &&
+                      // Редакторы НЕ могут публиковать сразу (только черновики)
+                      (request.resource.data.published == false || isAdmin());
+
+      // ОБНОВЛЕНИЕ статей:
+      // - Редакторы могут редактировать ТОЛЬКО свои статьи
+      // - Редакторы НЕ могут менять статус published
+      // - Админы могут редактировать любые статьи и менять статус
+      allow update: if isAuthenticated() &&
+                      (
+                        // Редактор редактирует свою статью (без изменения published)
+                        (isEditor() &&
+                         resource.data.authorId == request.auth.uid &&
+                         request.resource.data.published == resource.data.published &&
+                         request.resource.data.authorId == resource.data.authorId)
+                        ||
+                        // Админ может редактировать любую статью
+                        isAdmin()
+                      );
+
+      // УДАЛЕНИЕ статей:
+      // - Редакторы могут удалять ТОЛЬКО свои неопубликованные статьи
+      // - Админы могут удалять любые статьи
+      allow delete: if (isEditor() && resource.data.authorId == request.auth.uid && resource.data.published == false)
+                      || isAdmin();
+    }
+
+    // Коллекция для логов действий (только запись для админов/редакторов, чтение для superadmin)
+    match /audit_logs/{logId} {
+      allow read: if isSuperAdmin();
+      allow create: if isEditor();
+      allow update, delete: if false; // Логи нельзя изменять или удалять
     }
 
     // Default deny

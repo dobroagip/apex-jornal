@@ -12,9 +12,16 @@ export default function Footer({ onLegalClick, onAdminClick }: FooterProps) {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-16 md:mb-24">
           <div className="col-span-1 sm:col-span-2">
-            <h2 className="text-3xl md:text-4xl font-bold uppercase italic tracking-[0.2em] mb-6 md:mb-8">
-              APEX<span className="text-racing-red">.</span>
-            </h2>
+            <div className="flex flex-col items-start gap-0 mb-6 md:mb-8">
+              <img
+                src="/logo_apex.jpeg"
+                alt="APEX Magazine"
+                className="h-10 md:h-16 w-auto object-contain"
+              />
+              <span className="text-sm md:text-2xl font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase italic -mt-1 whitespace-nowrap">
+                APEX<span className="text-racing-red">.</span>
+              </span>
+            </div>
             <p className="text-gray-400 max-w-md text-base md:text-lg leading-relaxed mb-8 md:mb-10">
               The definitive source for automotive culture, high-performance engineering, and the pursuit of speed.
             </p>

@@ -2,16 +2,27 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Menu, Search, User, X, Globe, ChevronDown, LogOut, Heart } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { auth, loginWithGoogle, logout } from '../lib/firebase';
+import { auth, loginWithGoogle, logout, db } from '../lib/firebase';
 import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
+import { collection, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
+import { Article } from '../types';
 
-export default function Navbar() {
+interface NavbarProps {
+  onArticleClick?: (article: Article) => void;
+}
+
+export default function Navbar({ onArticleClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Article[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const langRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
   const { scrollY } = useScroll();
   
@@ -42,10 +53,68 @@ export default function Navbar() {
       if (userRef.current && !userRef.current.contains(event.target as Node)) {
         setIsUserMenuOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Search functionality
+  useEffect(() => {
+    const searchArticles = async () => {
+      if (searchQuery.trim().length < 2) {
+        setSearchResults([]);
+        return;
+      }
+
+      setIsSearching(true);
+      try {
+        const articlesRef = collection(db, 'articles');
+        const q = query(
+          articlesRef,
+          where('published', '==', true),
+          orderBy('createdAt', 'desc'),
+          limit(50)
+        );
+
+        const snapshot = await getDocs(q);
+        let articles = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as Article[];
+
+        // If no articles in Firestore, search in localStorage mock data
+        if (articles.length === 0) {
+          const mockArticlesStr = localStorage.getItem('mockArticles');
+          if (mockArticlesStr) {
+            articles = JSON.parse(mockArticlesStr);
+          }
+        }
+
+        // Client-side filtering by title, excerpt, category, author
+        const searchLower = searchQuery.toLowerCase();
+        const filtered = articles.filter(article => {
+          const titleMatch = article.title?.toLowerCase().includes(searchLower);
+          const excerptMatch = article.excerpt?.toLowerCase().includes(searchLower);
+          const categoryMatch = article.category?.toLowerCase().includes(searchLower);
+          const authorMatch = article.author?.toLowerCase().includes(searchLower);
+          return titleMatch || excerptMatch || categoryMatch || authorMatch;
+        });
+
+        setSearchResults(filtered.slice(0, 5));
+      } catch (error) {
+        console.error('Search error:', error);
+        setSearchResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(searchArticles, 300);
+    return () => clearTimeout(debounceTimer);
+  }, [searchQuery]);
 
   const menuVariants = {
     closed: { x: -100, transition: { type: "spring" as const, stiffness: 300, damping: 30 } },
@@ -53,11 +122,11 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: t('nav.magazine'), href: '#' },
-    { name: t('nav.racing'), href: '#' },
-    { name: t('nav.garage'), href: '#' },
-    { name: t('nav.shop'), href: '#' },
-    { name: t('nav.about'), href: '#' }
+    { name: t('nav.magazine'), href: '#journal' },
+    { name: t('nav.racing'), href: '#racing' },
+    { name: t('nav.garage'), href: '#garage' },
+    { name: t('nav.shop'), href: '#shop' },
+    { name: t('nav.about'), href: '#about' }
   ];
 
   const languages = [
@@ -96,13 +165,20 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="text-xl md:text-3xl font-bold tracking-[0.3em] uppercase italic whitespace-nowrap">
-            APEX<span className="text-racing-red">.</span>
-          </h1>
+        <div className="absolute left-1/2 -translate-x-1/2 z-0">
+          <a href="/" className="flex flex-col items-center gap-0">
+            <img
+              src="/logo_apex.jpeg"
+              alt="APEX Magazine"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase italic -mt-1">
+              APEX<span className="text-racing-red">.</span>
+            </span>
+          </a>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-6">
+        <div className="flex items-center gap-2 md:gap-6 relative z-10">
           <div className="relative" ref={langRef}>
             <button 
               onClick={() => setIsLangOpen(!isLangOpen)}
@@ -146,10 +222,95 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-1 md:gap-2">
-            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            
+            <div className="relative" ref={searchRef}>
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute right-0 mt-3 w-80 md:w-[480px] bg-racing-black/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] z-100 max-h-[500px] flex flex-col"
+                  >
+                    <div className="p-4 border-b border-white/10">
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder={t('nav.searchPlaceholder', { defaultValue: 'Search articles...' })}
+                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-racing-red transition-colors"
+                        autoFocus
+                      />
+                    </div>
+
+                    <div className="overflow-y-auto flex-1">
+                      {isSearching ? (
+                        <div className="p-8 text-center">
+                          <div className="inline-block w-6 h-6 border-2 border-racing-red border-t-transparent rounded-full animate-spin" />
+                          <p className="text-xs text-gray-500 mt-3">{t('nav.searching', { defaultValue: 'Searching...' })}</p>
+                        </div>
+                      ) : searchQuery.trim().length < 2 ? (
+                        <div className="p-8 text-center">
+                          <Search className="w-8 h-8 text-gray-600 mx-auto mb-3" />
+                          <p className="text-xs text-gray-500">{t('nav.searchHint', { defaultValue: 'Type at least 2 characters to search' })}</p>
+                        </div>
+                      ) : searchResults.length === 0 ? (
+                        <div className="p-8 text-center">
+                          <p className="text-sm text-gray-400">{t('nav.noResults', { defaultValue: 'No articles found' })}</p>
+                        </div>
+                      ) : (
+                        <div className="py-2">
+                          {searchResults.map((article) => (
+                            <button
+                              key={article.id}
+                              onClick={() => {
+                                if (onArticleClick) {
+                                  onArticleClick(article);
+                                }
+                                setIsSearchOpen(false);
+                                setSearchQuery('');
+                              }}
+                              className="w-full text-left block px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0"
+                            >
+                              <div className="flex gap-3">
+                                {article.image && (
+                                  <img
+                                    src={article.image}
+                                    alt={article.title}
+                                    className="w-16 h-16 object-cover rounded-lg shrink-0"
+                                    referrerPolicy="no-referrer"
+                                  />
+                                )}
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-[9px] font-bold uppercase tracking-wider text-racing-red">
+                                      {article.category}
+                                    </span>
+                                  </div>
+                                  <h4 className="text-sm font-bold text-white mb-1 line-clamp-1">
+                                    {article.title}
+                                  </h4>
+                                  <p className="text-xs text-gray-400 line-clamp-2">
+                                    {article.excerpt}
+                                  </p>
+                                </div>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <div className="relative" ref={userRef}>
               <button 
                 onClick={() => user ? setIsUserMenuOpen(!isUserMenuOpen) : loginWithGoogle()}
@@ -216,10 +377,17 @@ export default function Navbar() {
               className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-racing-black border-r border-white/10 z-70 p-8 flex flex-col"
             >
               <div className="flex justify-between items-center mb-16">
-                <h1 className="text-xl font-bold tracking-[0.2em] uppercase italic">
-                  APEX<span className="text-racing-red">.</span>
-                </h1>
-                <button 
+                <a href="/" className="flex flex-col items-center gap-0">
+                  <img
+                    src="/logo_apex.jpeg"
+                    alt="APEX Magazine"
+                    className="h-8 w-auto object-contain"
+                  />
+                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase italic -mt-1">
+                    APEX<span className="text-racing-red">.</span>
+                  </span>
+                </a>
+                <button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-2 hover:bg-white/10 rounded-full transition-colors"
                 >
@@ -232,13 +400,14 @@ export default function Navbar() {
                   <motion.a
                     key={link.name}
                     href={link.href}
+                    onClick={() => setIsMenuOpen(false)}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: idx * 0.1 + 0.3 }}
                     className="text-4xl md:text-5xl font-black uppercase italic hover:text-racing-red transition-all duration-300 relative group w-fit"
                   >
                     <span className="relative z-10">{link.name}</span>
-                    <motion.span 
+                    <motion.span
                       className="absolute -bottom-1 left-0 w-0 h-1 bg-racing-red group-hover:w-full transition-all duration-500"
                     />
                   </motion.a>
@@ -248,9 +417,9 @@ export default function Navbar() {
               <div className="mt-auto pt-12 border-t border-white/10">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold mb-4">{t('nav.followUs')}</p>
                 <div className="flex gap-6">
-                  <a href="#" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Instagram</a>
-                  <a href="#" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Twitter</a>
-                  <a href="#" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Youtube</a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Instagram</a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Twitter</a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase hover:text-racing-red transition-colors">Youtube</a>
                 </div>
               </div>
             </motion.div>

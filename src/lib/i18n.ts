@@ -31,10 +31,15 @@ const resources = {
         grid: "The Grid",
         viewCalendar: "View Full Calendar",
         circuit: "Circuit",
+        title: "Race Calendar",
+        subtitle: "Full F1 Season Schedule",
+        loading: "Loading calendar...",
+        retry: "Retry",
         status: {
           upcoming: "upcoming",
           live: "live",
-          finished: "finished"
+          finished: "finished",
+          canceled: "canceled"
         }
       },
       newsletter: {
@@ -88,10 +93,15 @@ const resources = {
         grid: "Стартова решітка",
         viewCalendar: "Повний календар",
         circuit: "Траса",
+        title: "Календар гонок",
+        subtitle: "Повний розклад сезону F1",
+        loading: "Завантаження календаря...",
+        retry: "Повторити",
         status: {
           upcoming: "майбутні",
           live: "наживо",
-          finished: "завершено"
+          finished: "завершено",
+          canceled: "скасовано"
         }
       },
       newsletter: {
@@ -145,10 +155,15 @@ const resources = {
         grid: "Startaufstellung",
         viewCalendar: "Vollständiger Kalender",
         circuit: "Rennstrecke",
+        title: "Rennkalender",
+        subtitle: "Vollständiger F1-Saisonplan",
+        loading: "Kalender wird geladen...",
+        retry: "Wiederholen",
         status: {
           upcoming: "bevorstehend",
           live: "live",
-          finished: "beendet"
+          finished: "beendet",
+          canceled: "abgesagt"
         }
       },
       newsletter: {

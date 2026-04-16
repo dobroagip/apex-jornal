@@ -13,7 +13,7 @@ import BrandMarquee from './components/BrandMarquee';
 import ArticlePage from './components/ArticlePage';
 import { Article } from './types';
 import { motion, AnimatePresence } from 'motion/react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -104,6 +104,20 @@ export default function App() {
     }
   ], [i18n.language, t]);
 
+  // Save mock articles to localStorage for search functionality
+  useEffect(() => {
+    localStorage.setItem('mockArticles', JSON.stringify(MOCK_ARTICLES));
+  }, [MOCK_ARTICLES]);
+
+  // Sort articles by date (newest first)
+  const sortedArticles = useMemo(() => {
+    return [...MOCK_ARTICLES].sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA; // newest first
+    });
+  }, [MOCK_ARTICLES]);
+
   const handleOpenArticle = (article: Article) => {
     setSelectedArticle(article);
     setView('article');
@@ -125,9 +139,14 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <Navbar />
+              <Navbar onArticleClick={handleOpenArticle} />
               <main>
-                <Hero onReadMore={() => handleOpenArticle(MOCK_ARTICLES[0])} />
+                <Hero onReadMore={() => {
+                  const journalSection = document.getElementById('journal');
+                  if (journalSection) {
+                    journalSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }} />
                 <BrandMarquee />
                 
                 <section className="py-24 bg-racing-black" id="journal">
@@ -145,7 +164,8 @@ export default function App() {
                           {t('race.title1', { defaultValue: 'The' })} <span className="text-stroke">{t('journal.title')}</span>
                         </h2>
                       </motion.div>
-                      <motion.button 
+                      <motion.button
+                        onClick={() => handleOpenArticle(sortedArticles[0])}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="group btn-racing btn-racing-outline flex items-center gap-4"
@@ -156,7 +176,7 @@ export default function App() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                      {MOCK_ARTICLES.map((article, idx) => (
+                      {sortedArticles.map((article, idx) => (
                         <div key={article.id} onClick={() => handleOpenArticle(article)}>
                           <ArticleCard article={article} index={idx} />
                         </div>
@@ -166,6 +186,75 @@ export default function App() {
                 </section>
 
                 <RaceSection />
+
+                {/* Garage Section - Placeholder */}
+                <section id="garage" className="py-24 bg-racing-black">
+                  <div className="container mx-auto px-6">
+                    <motion.div
+                      initial={{ y: 50, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-center"
+                    >
+                      <span className="text-racing-red text-sm font-bold uppercase tracking-[0.3em] mb-4 block">
+                        {t('nav.garage', { defaultValue: 'Garage' })}
+                      </span>
+                      <h2 className="text-5xl md:text-7xl font-bold uppercase italic mb-8">
+                        {t('garage.title', { defaultValue: 'Coming Soon' })}
+                      </h2>
+                      <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                        {t('garage.description', { defaultValue: 'Exclusive car reviews, technical deep-dives, and garage tours.' })}
+                      </p>
+                    </motion.div>
+                  </div>
+                </section>
+
+                {/* Shop Section - Placeholder */}
+                <section id="shop" className="py-24 bg-gradient-to-b from-racing-black to-black">
+                  <div className="container mx-auto px-6">
+                    <motion.div
+                      initial={{ y: 50, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-center"
+                    >
+                      <span className="text-racing-red text-sm font-bold uppercase tracking-[0.3em] mb-4 block">
+                        {t('nav.shop', { defaultValue: 'Shop' })}
+                      </span>
+                      <h2 className="text-3xl md:text-7xl font-bold uppercase italic mb-8 break-words">
+                        {t('shop.title', { defaultValue: 'Merchandise' })}
+                      </h2>
+                      <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                        {t('shop.description', { defaultValue: 'Premium apparel and accessories for automotive enthusiasts.' })}
+                      </p>
+                    </motion.div>
+                  </div>
+                </section>
+
+                {/* About Section - Placeholder */}
+                <section id="about" className="py-24 bg-black">
+                  <div className="container mx-auto px-6">
+                    <motion.div
+                      initial={{ y: 50, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="max-w-4xl mx-auto"
+                    >
+                      <span className="text-racing-red text-sm font-bold uppercase tracking-[0.3em] mb-4 block">
+                        {t('nav.about', { defaultValue: 'About' })}
+                      </span>
+                      <h2 className="text-5xl md:text-7xl font-bold uppercase italic mb-8">
+                        {t('about.title', { defaultValue: 'About APEX' })}
+                      </h2>
+                      <p className="text-xl text-gray-400 leading-relaxed mb-6">
+                        {t('about.description1', { defaultValue: 'APEX Magazine is the ultimate destination for automotive enthusiasts who demand more than surface-level content.' })}
+                      </p>
+                      <p className="text-xl text-gray-400 leading-relaxed">
+                        {t('about.description2', { defaultValue: 'We dive deep into the engineering, design, and culture that makes the automotive world extraordinary.' })}
+                      </p>
+                    </motion.div>
+                  </div>
+                </section>
 
                 {/* Newsletter Section */}
                 <section className="py-32 relative overflow-hidden">

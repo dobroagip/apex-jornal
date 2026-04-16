@@ -3,7 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+
+    <!-- Primary Meta Tags -->
+    <title>APEX Magazine - Automotive Culture & High-Performance Engineering</title>
+    <meta name="title" content="APEX Magazine - Automotive Culture & High-Performance Engineering" />
+    <meta name="description" content="The definitive source for automotive culture, high-performance engineering, and the pursuit of speed." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="APEX Magazine" />
+    <meta property="og:description" content="The definitive source for automotive culture, high-performance engineering, and the pursuit of speed." />
+    <meta property="og:image" content="/web-app-manifest-512x512.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="APEX Magazine" />
+    <meta property="twitter:description" content="The definitive source for automotive culture, high-performance engineering, and the pursuit of speed." />
+    <meta property="twitter:image" content="/web-app-manifest-512x512.png" />
+
     <script>
       (function() {
         try {
@@ -11,7 +40,7 @@
           if (_fetch) {
             Object.defineProperty(window, 'fetch', {
               get: function() { return _fetch; },
-              set: function(v) { 
+              set: function(v) {
                 console.warn('Blocked attempt to overwrite window.fetch');
               },
               configurable: true

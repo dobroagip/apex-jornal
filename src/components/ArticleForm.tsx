@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { db, auth, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { Upload, Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { Upload, Send, AlertCircle, CheckCircle, Lock } from 'lucide-react';
+import { useUserRole } from '../hooks/useUserRole';
 
 const ArticleForm: React.FC = () => {
   const { t } = useTranslation();
+  const { role, loading: roleLoading, isEditor, isAdmin, isSuperAdmin } = useUserRole();
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [content, setContent] = useState('');
@@ -13,6 +15,69 @@ const ArticleForm: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
+  const [publishImmediately, setPublishImmediately] = useState(false);
+
+  // Проверка доступа
+  if (roleLoading) {
+    return (
+      <div className="max-w-4xl mx-auto p-8 glass-card rounded-3xl my-20">
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-racing-red"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!auth.currentUser) {
+    return (
+      <div className="max-w-4xl mx-auto p-8 glass-card rounded-3xl my-20">
+        <div className="text-center py-20">
+          <Lock className="w-16 h-16 text-racing-red mx-auto mb-6" />
+          <h2 className="text-3xl font-black uppercase italic mb-4">
+            Authentication Required
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Please log in to access the admin panel.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="btn-racing btn-racing-primary"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isEditor) {
+    return (
+      <div className="max-w-4xl mx-auto p-8 glass-card rounded-3xl my-20">
+        <div className="text-center py-20">
+          <Lock className="w-16 h-16 text-racing-red mx-auto mb-6" />
+          <h2 className="text-3xl font-black uppercase italic mb-4">
+            Access Denied
+          </h2>
+          <p className="text-gray-400 mb-4">
+            You don't have permission to access this page.
+          </p>
+          <p className="text-sm text-gray-500 mb-8">
+            Current role: <span className="text-racing-red font-bold">{role}</span>
+          </p>
+          <p className="text-xs text-gray-600 mb-8">
+            Only editors and administrators can create articles.<br />
+            Contact the site administrator if you need access.
+          </p>
+          <button
+            onClick={() => window.history.back()}
+            className="btn-racing btn-racing-outline"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -22,8 +87,14 @@ const ArticleForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!auth.currentUser) {
       setStatus({ type: 'error', message: 'You must be logged in to post articles.' });
+      return;
+    }
+
+    if (!isEditor) {
+      setStatus({ type: 'error', message: 'Access denied. Editor or Admin role required.' });
       return;
     }
 
@@ -32,12 +103,12 @@ const ArticleForm: React.FC = () => {
 
     try {
       let imageUrl = '';
-      
+
       // 1. Upload Image to Backend
       if (image) {
         const formData = new FormData();
         formData.append('image', image);
-        
+
         const uploadRes = await fetch('/api/upload', {
           method: 'POST',
           headers: {
@@ -45,7 +116,7 @@ const ArticleForm: React.FC = () => {
           },
           body: formData
         });
-        
+
         const uploadData = await uploadRes.json();
         if (uploadData.error) throw new Error(uploadData.error);
         imageUrl = uploadData.url;
@@ -54,7 +125,7 @@ const ArticleForm: React.FC = () => {
       // 2. Sanitize Content on Backend
       const sanitizeRes = await fetch('/api/articles/sanitize', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'x-xsrf-token': document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || ''
         },
@@ -71,16 +142,22 @@ const ArticleForm: React.FC = () => {
         category,
         author: auth.currentUser.displayName || 'Anonymous',
         authorId: auth.currentUser.uid,
-        published: false, // Default to draft for moderation
+        // Редакторы создают черновики, админы могут публиковать сразу
+        published: isAdmin && publishImmediately,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
 
-      setStatus({ type: 'success', message: 'Article submitted for moderation!' });
+      const successMessage = isAdmin && publishImmediately
+        ? 'Article published successfully!'
+        : 'Article submitted for moderation!';
+
+      setStatus({ type: 'success', message: successMessage });
       setTitle('');
       setSubtitle('');
       setContent('');
       setImage(null);
+      setPublishImmediately(false);
     } catch (error) {
       console.error(error);
       setStatus({ type: 'error', message: error instanceof Error ? error.message : 'Failed to submit article' });
@@ -91,9 +168,27 @@ const ArticleForm: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 glass-card rounded-3xl my-20">
-      <h2 className="text-3xl font-black uppercase italic mb-8 border-l-4 border-racing-red pl-6">
-        Create New Article
-      </h2>
+      <div className="flex justify-between items-start mb-8">
+        <h2 className="text-3xl font-black uppercase italic border-l-4 border-racing-red pl-6">
+          Create New Article
+        </h2>
+        <div className="text-right">
+          <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1">Your Role</p>
+          <span className={`text-sm font-bold uppercase px-3 py-1 rounded-full ${
+            role === 'admin' ? 'bg-racing-red/20 text-racing-red' : 'bg-blue-500/20 text-blue-400'
+          }`}>
+            {role === 'admin' ? '👑 Admin' : '✏️ Editor'}
+          </span>
+        </div>
+      </div>
+
+      {role === 'editor' && (
+        <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+          <p className="text-sm text-blue-400">
+            <strong>Editor Mode:</strong> Your articles will be submitted for moderation before publishing.
+          </p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -162,6 +257,27 @@ const ArticleForm: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {isAdmin && (
+          <div className="space-y-2">
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                checked={publishImmediately}
+                onChange={(e) => setPublishImmediately(e.target.checked)}
+                className="w-5 h-5 rounded border-2 border-white/20 bg-white/5 checked:bg-racing-red checked:border-racing-red focus:ring-2 focus:ring-racing-red/50 transition-all cursor-pointer"
+              />
+              <span className="text-sm font-bold uppercase tracking-wider group-hover:text-racing-red transition-colors">
+                Publish Immediately
+              </span>
+            </label>
+            <p className="text-xs text-gray-500 ml-8">
+              {publishImmediately
+                ? '✅ Article will be published immediately'
+                : '⏳ Article will be saved as draft for review'}
+            </p>
+          </div>
+        )}
 
         {status && (
           <div className={`flex items-center gap-3 p-4 rounded-xl ${status.type === 'success' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>

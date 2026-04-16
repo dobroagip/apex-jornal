@@ -35,7 +35,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
       
       <div className="flex justify-between items-start gap-4">
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl md:text-2xl font-bold uppercase italic leading-[1.1] mb-2 group-hover:text-racing-red transition-colors line-clamp-2 wrap-break-word [hyphens:auto]">
+          <h3 className="text-base md:text-2xl font-bold uppercase italic leading-[1.1] mb-2 group-hover:text-racing-red transition-colors line-clamp-2 break-words">
             {article.title}
           </h3>
           <p className="text-xs md:text-sm text-gray-400 line-clamp-2 mb-4 font-medium italic">
