@@ -28,19 +28,24 @@ export default function RaceCalendar({ isOpen, onClose }: RaceCalendarProps) {
   const [races, setRaces] = useState<Race[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [lastFetch, setLastFetch] = useState<number>(0);
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (isOpen && races.length === 0) {
+    const now = Date.now();
+    const cacheTime = 30 * 60 * 1000; // 30 minutes cache
+
+    // Only fetch if calendar is open AND (no data OR cache expired)
+    if (isOpen && (races.length === 0 || now - lastFetch > cacheTime)) {
       fetchRaces();
     }
 
-    // Auto-refresh every 5 minutes when calendar is open
+    // Auto-refresh every 30 minutes when calendar is open (to stay within free tier limits)
     let refreshInterval: NodeJS.Timeout | null = null;
     if (isOpen) {
       refreshInterval = setInterval(() => {
         fetchRaces();
-      }, 5 * 60 * 1000); // 5 minutes
+      }, 30 * 60 * 1000); // 30 minutes
     }
 
     return () => {
@@ -125,6 +130,7 @@ export default function RaceCalendar({ isOpen, onClose }: RaceCalendarProps) {
       }
 
       setRaces(raceData);
+      setLastFetch(Date.now()); // Update last fetch timestamp
     } catch (err) {
       console.error('Error fetching races:', err);
       setError('Failed to load race calendar. Please try again later.');

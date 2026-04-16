@@ -23,9 +23,16 @@ export default function RaceSection() {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [races, setRaces] = useState<Race[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lastFetch, setLastFetch] = useState<number>(0);
 
   useEffect(() => {
-    fetchRaces();
+    const now = Date.now();
+    const cacheTime = 30 * 60 * 1000; // 30 minutes cache
+
+    // Only fetch if no data OR cache expired
+    if (races.length === 0 || now - lastFetch > cacheTime) {
+      fetchRaces();
+    }
   }, []);
 
   const fetchRaces = async () => {
@@ -90,6 +97,7 @@ export default function RaceSection() {
       ];
 
       setRaces(selectedRaces);
+      setLastFetch(Date.now()); // Update last fetch timestamp
     } catch (error) {
       console.error('Error fetching races:', error);
       // Fallback to mock data on error
