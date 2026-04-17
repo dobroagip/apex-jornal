@@ -150,18 +150,30 @@ const resources = {
         terms: {
           title: "Terms of Service",
           updated: "Last updated: April 17, 2026",
-          intro: "Welcome to APEX Magazine. By accessing our website, you agree to these terms of service and our privacy policy.",
+          intro: "By accessing and using APEX Magazine (the \"Site\"), you agree to be bound by these Terms of Service. If you do not agree, please refrain from using the Site.",
           section1: {
             title: "1. Acceptance of Terms",
-            content: "By using this website, you accept these terms in full. If you disagree with any part of these terms, you must not use our website."
+            content: "By accessing and using APEX Magazine, you agree to be bound by these Terms of Service. If you do not agree, please refrain from using the Site."
           },
           section2: {
             title: "2. Intellectual Property",
-            content: "All content on this website, including text, graphics, logos, and images, is the property of APEX Magazine and protected by copyright laws."
+            content: "All content published on this Site, including but not limited to articles, photographs, logos, and graphic designs, is the property of APEX Magazine and protected by international copyright laws. Unauthorized reproduction or distribution of any materials is strictly prohibited."
           },
           section3: {
-            title: "3. Limitation of Liability",
-            content: "APEX Magazine will not be liable for any damages arising from the use of this website or inability to use it."
+            title: "3. External Links and Third-Party Content",
+            content: "The Site contains links to external websites, including e-commerce platforms like Bardahl Ukraine and Automall. APEX Magazine does not control, endorse, or assume responsibility for the content, privacy policies, or practices of any third-party websites. Any transactions or interactions between you and a third-party site are solely between you and that third party."
+          },
+          section4: {
+            title: "4. Advertising and Link Placement Services",
+            content: "APEX Magazine offers paid advertising, sponsored content, and link placement services. Sponsored content and paid links will be clearly marked as \"Sponsored\" or \"Advertisement.\" The inclusion of a paid link does not constitute a guarantee of the third party's products or services."
+          },
+          section5: {
+            title: "5. Disclaimer of Liability",
+            content: "The content on APEX Magazine is for informational and entertainment purposes only. While we strive for accuracy, we are not liable for any technical inaccuracies or for any damages resulting from the use of automotive advice or maintenance tips provided in our articles."
+          },
+          section6: {
+            title: "6. Governing Law",
+            content: "These Terms are governed by the laws of Ukraine. Any disputes shall be resolved in the courts of Kyiv, Ukraine."
           }
         }
       }
@@ -314,18 +326,30 @@ const resources = {
         terms: {
           title: "Умови використання",
           updated: "Останнє оновлення: 17 квітня 2026",
-          intro: "Ласкаво просимо до APEX Magazine. Отримуючи доступ до нашого веб-сайту, ви погоджуєтесь з цими умовами обслуговування та нашою політикою конфіденційності.",
+          intro: "Отримуючи доступ та використовуючи APEX Magazine (\"Сайт\"), ви погоджуєтесь дотримуватися цих Умов використання. Якщо ви не згодні, будь ласка, утримайтесь від використання Сайту.",
           section1: {
             title: "1. Прийняття умов",
-            content: "Використовуючи цей веб-сайт, ви повністю приймаєте ці умови. Якщо ви не згодні з будь-якою частиною цих умов, ви не повинні використовувати наш веб-сайт."
+            content: "Отримуючи доступ та використовуючи APEX Magazine, ви погоджуєтесь дотримуватися цих Умов використання. Якщо ви не згодні, будь ласка, утримайтесь від використання Сайту."
           },
           section2: {
             title: "2. Інтелектуальна власність",
-            content: "Весь вміст цього веб-сайту, включаючи текст, графіку, логотипи та зображення, є власністю APEX Magazine та захищений законами про авторське право."
+            content: "Весь контент, опублікований на цьому Сайті, включаючи, але не обмежуючись статтями, фотографіями, логотипами та графічним дизайном, є власністю APEX Magazine та захищений міжнародними законами про авторське право. Несанкціоноване відтворення або розповсюдження будь-яких матеріалів суворо заборонено."
           },
           section3: {
-            title: "3. Обмеження відповідальності",
-            content: "APEX Magazine не несе відповідальності за будь-які збитки, що виникають внаслідок використання цього веб-сайту або неможливості його використання."
+            title: "3. Зовнішні посилання та контент третіх сторін",
+            content: "Сайт містить посилання на зовнішні веб-сайти, включаючи платформи електронної комерції, такі як Bardahl Ukraine та Automall. APEX Magazine не контролює, не схвалює та не несе відповідальності за контент, політику конфіденційності або практики будь-яких сторонніх веб-сайтів. Будь-які транзакції або взаємодії між вами та стороннім сайтом здійснюються виключно між вами та цією третьою стороною."
+          },
+          section4: {
+            title: "4. Рекламні послуги та розміщення посилань",
+            content: "APEX Magazine пропонує платну рекламу, спонсорований контент та послуги розміщення посилань. Спонсорований контент та платні посилання будуть чітко позначені як \"Спонсоровано\" або \"Реклама\". Включення платного посилання не є гарантією продуктів або послуг третьої сторони."
+          },
+          section5: {
+            title: "5. Відмова від відповідальності",
+            content: "Контент на APEX Magazine призначений виключно для інформаційних та розважальних цілей. Хоча ми прагнемо до точності, ми не несемо відповідальності за будь-які технічні неточності або за будь-які збитки, що виникають внаслідок використання автомобільних порад або підказок з обслуговування, наданих у наших статтях."
+          },
+          section6: {
+            title: "6. Застосовне право",
+            content: "Ці Умови регулюються законодавством України. Будь-які спори вирішуються в судах міста Києва, Україна."
           }
         }
       }
@@ -478,18 +502,30 @@ const resources = {
         terms: {
           title: "Nutzungsbedingungen",
           updated: "Zuletzt aktualisiert: 17. April 2026",
-          intro: "Willkommen bei APEX Magazine. Durch den Zugriff auf unsere Website stimmen Sie diesen Nutzungsbedingungen und unserer Datenschutzrichtlinie zu.",
+          intro: "Durch den Zugriff auf und die Nutzung von APEX Magazine (die \"Website\") erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht einverstanden sind, verzichten Sie bitte auf die Nutzung der Website.",
           section1: {
-            title: "1. Annahme der Bedingungen",
-            content: "Durch die Nutzung dieser Website akzeptieren Sie diese Bedingungen vollständig. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, dürfen Sie unsere Website nicht nutzen."
+            title: "1. Geltungsbereich",
+            content: "Durch den Zugriff auf und die Nutzung von APEX Magazine erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht einverstanden sind, verzichten Sie bitte auf die Nutzung der Website."
           },
           section2: {
-            title: "2. Geistiges Eigentum",
-            content: "Alle Inhalte auf dieser Website, einschließlich Text, Grafiken, Logos und Bilder, sind Eigentum von APEX Magazine und durch Urheberrechtsgesetze geschützt."
+            title: "2. Urheberrecht und geistiges Eigentum",
+            content: "Sämtliche auf dieser Website veröffentlichten Inhalte (Texte, Fotos, Grafiken, Logos) sind urheberrechtlich geschützt und Eigentum von APEX Magazine. Jede Verwertung außerhalb der Grenzen des Urheberrechtsgesetzes ohne schriftliche Zustimmung von APEX ist unzulässig. Eine unbefugte Vervielfältigung oder Verbreitung von Materialien ist strengstens untersagt."
           },
           section3: {
-            title: "3. Haftungsbeschränkung",
-            content: "APEX Magazine haftet nicht für Schäden, die durch die Nutzung dieser Website oder die Unmöglichkeit ihrer Nutzung entstehen."
+            title: "3. Externe Links und Haftungsausschluss",
+            content: "Unsere Website enthält Verknüpfungen zu Websites Dritter (z. B. Bardahl Ukraine, Automall). Da wir auf deren Inhalte keinen Einfluss haben, übernehmen wir für die fremden Inhalte keine Gewähr. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Eine permanente inhaltliche Kontrolle ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Alle Transaktionen oder Interaktionen zwischen Ihnen und einer Drittanbieter-Website erfolgen ausschließlich zwischen Ihnen und diesem Dritten."
+          },
+          section4: {
+            title: "4. Werbung und gesponserte Inhalte",
+            content: "APEX bietet kostenpflichtige Werbeflächen, gesponserte Inhalte und Linkplatzierungen an. Solche Inhalte werden gemäß den gesetzlichen Bestimmungen deutlich als \"Anzeige\" oder \"Sponsored\" gekennzeichnet. Die Platzierung eines bezahlten Links stellt keine ausdrückliche Empfehlung der beworbenen Produkte oder Dienstleistungen durch die Redaktion dar."
+          },
+          section5: {
+            title: "5. Haftungsbeschränkung",
+            content: "Die Informationen in diesem Magazin dienen der allgemeinen Information und Unterhaltung. Obwohl wir uns um Genauigkeit bemühen, übernehmen wir keine Haftung für technische Ungenauigkeiten oder für Schäden an Fahrzeugen oder Personen, die durch die Umsetzung von technischen Tipps oder Berichten aus unseren Artikeln entstehen."
+          },
+          section6: {
+            title: "6. Rechtswahl und Gerichtsstand",
+            content: "Es gilt das Recht der Ukraine. Gerichtsstand ist Kiew, Ukraine. Weitere Informationen finden Sie in unserem Impressum."
           }
         }
       }

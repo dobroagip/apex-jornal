@@ -71,6 +71,15 @@ const LegalPages: React.FC = () => {
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section3.title')}</h2>
             <p>{t('legal.terms.section3.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section4.title')}</h2>
+            <p>{t('legal.terms.section4.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section5.title')}</h2>
+            <p>{t('legal.terms.section5.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section6.title')}</h2>
+            <p>{t('legal.terms.section6.content')}</p>
           </div>
         </section>
       </div>
