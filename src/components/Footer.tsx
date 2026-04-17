@@ -49,18 +49,17 @@ export default function Footer({ onLegalClick, onAdminClick }: FooterProps) {
           </div>
           
           <div>
-            <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest mb-6 md:mb-8 text-racing-red">Newsletter</h3>
-            <p className="text-gray-400 text-xs md:text-sm mb-6">Get the latest stories delivered to your inbox.</p>
-            <div className="relative">
-              <input 
-                type="email" 
-                placeholder="Email Address"
-                className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-racing-red transition-colors"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-racing-red hover:text-white transition-colors">
+            <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest mb-6 md:mb-8 text-racing-red">Contact</h3>
+            <p className="text-gray-400 text-xs md:text-sm mb-6">Get in touch with us.</p>
+            <a
+              href="mailto:dobrocreate@gmail.com"
+              className="flex items-center gap-3 text-gray-400 hover:text-racing-red transition-colors group"
+            >
+              <div className="p-2 bg-white/5 group-hover:bg-racing-red transition-colors rounded-full">
                 <Mail className="w-4 h-4" />
-              </button>
-            </div>
+              </div>
+              <span className="text-sm font-medium">dobrocreate@gmail.com</span>
+            </a>
           </div>
         </div>
         
