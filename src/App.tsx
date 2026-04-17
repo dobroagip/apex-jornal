@@ -8,7 +8,6 @@ import Hero from './components/Hero';
 import ArticleCard from './components/ArticleCard';
 import RaceSection from './components/RaceSection';
 import Newsletter from './components/Newsletter';
-import About from './components/About';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import BrandMarquee from './components/BrandMarquee';
@@ -260,9 +259,6 @@ export default function App() {
 
                 {/* Newsletter Section */}
                 <Newsletter />
-
-                {/* About Section */}
-                <About />
               </main>
               <Footer onLegalClick={() => setView('legal')} onAdminClick={() => setView('admin')} />
             </motion.div>
