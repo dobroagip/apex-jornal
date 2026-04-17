@@ -8,6 +8,7 @@ import Hero from './components/Hero';
 import ArticleCard from './components/ArticleCard';
 import RaceSection from './components/RaceSection';
 import Newsletter from './components/Newsletter';
+import About from './components/About';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import BrandMarquee from './components/BrandMarquee';
@@ -232,30 +233,8 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* About Section - Placeholder */}
-                <section id="about" className="py-24 bg-black">
-                  <div className="container mx-auto px-6">
-                    <motion.div
-                      initial={{ y: 50, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="max-w-4xl mx-auto"
-                    >
-                      <span className="text-racing-red text-sm font-bold uppercase tracking-[0.3em] mb-4 block">
-                        {t('nav.about', { defaultValue: 'About' })}
-                      </span>
-                      <h2 className="text-5xl md:text-7xl font-bold uppercase italic mb-8">
-                        {t('about.title', { defaultValue: 'About APEX' })}
-                      </h2>
-                      <p className="text-xl text-gray-400 leading-relaxed mb-6">
-                        {t('about.description1', { defaultValue: 'APEX Magazine is the ultimate destination for automotive enthusiasts who demand more than surface-level content.' })}
-                      </p>
-                      <p className="text-xl text-gray-400 leading-relaxed">
-                        {t('about.description2', { defaultValue: 'We dive deep into the engineering, design, and culture that makes the automotive world extraordinary.' })}
-                      </p>
-                    </motion.div>
-                  </div>
-                </section>
+                {/* About Section */}
+                <About />
 
                 {/* Newsletter Section */}
                 <Newsletter />
