@@ -69,6 +69,49 @@ const resources = {
         topSpeed: "Top Speed",
         engine: "Engine",
         weight: "Weight"
+      },
+      about: {
+        label: "Who We Are",
+        title: "About",
+        titleAccent: "APEX",
+        intro: "APEX Magazine is the ultimate destination for automotive enthusiasts who demand more than surface-level content. We dive deep into the engineering, design, and culture that makes the automotive world extraordinary.",
+        mission: "Founded in 2024, APEX exists for those who see cars not just as transportation—but as art, technology, and passion. We explore the intersection of performance, innovation, and design through the eyes of people who truly understand.",
+        features: {
+          technical: {
+            title: "Technical Analysis",
+            description: "In-depth technical analysis and engineering deep-dives"
+          },
+          interviews: {
+            title: "Exclusive Interviews",
+            description: "Exclusive interviews with designers, engineers, and visionaries"
+          },
+          business: {
+            title: "Business Insights",
+            description: "The business behind the brands"
+          },
+          culture: {
+            title: "Cultural Movements",
+            description: "Cultural movements shaping automotive future"
+          }
+        },
+        why: {
+          title: "Why",
+          titleAccent: "APEX?",
+          description: "While others chase trends, we chase truth. Every article is researched, fact-checked, and written by people who live and breathe automotive culture. We don't do clickbait. We do clarity."
+        },
+        readers: {
+          title: "Our Readers",
+          engineers: "Engineers curious about design",
+          collectors: "Collectors seeking knowledge",
+          professionals: "Professionals in the industry",
+          enthusiasts: "Enthusiasts who want to understand why a car matters—not just how fast it goes"
+        },
+        stats: {
+          founded: "Founded",
+          articles: "Articles",
+          readers: "Readers",
+          countries: "Countries"
+        }
       }
     }
   },
@@ -138,6 +181,49 @@ const resources = {
         topSpeed: "Макс. швидкість",
         engine: "Двигун",
         weight: "Вага"
+      },
+      about: {
+        label: "Хто ми",
+        title: "Про",
+        titleAccent: "APEX",
+        intro: "APEX Magazine — це головний напрямок для автомобільних ентузіастів, які вимагають більше, ніж поверхневий контент. Ми заглиблюємося в інженерію, дизайн та культуру, які роблять автомобільний світ надзвичайним.",
+        mission: "Заснований у 2024 році, APEX існує для тих, хто бачить автомобілі не просто як транспорт — а як мистецтво, технологію та пристрасть. Ми досліджуємо перетин продуктивності, інновацій та дизайну очима людей, які справді розуміються.",
+        features: {
+          technical: {
+            title: "Технічний аналіз",
+            description: "Глибокий технічний аналіз та інженерні дослідження"
+          },
+          interviews: {
+            title: "Ексклюзивні інтерв'ю",
+            description: "Ексклюзивні інтерв'ю з дизайнерами, інженерами та візіонерами"
+          },
+          business: {
+            title: "Бізнес-аналітика",
+            description: "Бізнес за брендами"
+          },
+          culture: {
+            title: "Культурні рухи",
+            description: "Культурні рухи, що формують автомобільне майбутнє"
+          }
+        },
+        why: {
+          title: "Чому",
+          titleAccent: "APEX?",
+          description: "Поки інші ганяються за трендами, ми ганяємося за правдою. Кожна стаття досліджена, перевірена фактами та написана людьми, які живуть і дихають автомобільною культурою. Ми не робимо клікбейт. Ми робимо ясність."
+        },
+        readers: {
+          title: "Наші читачі",
+          engineers: "Інженери, які цікавляться дизайном",
+          collectors: "Колекціонери, які шукають знання",
+          professionals: "Професіонали в індустрії",
+          enthusiasts: "Ентузіасти, які хочуть зрозуміти, чому автомобіль важливий — а не лише наскільки він швидкий"
+        },
+        stats: {
+          founded: "Заснований",
+          articles: "Статей",
+          readers: "Читачів",
+          countries: "Країн"
+        }
       }
     }
   },
@@ -207,6 +293,49 @@ const resources = {
         topSpeed: "Höchstgeschwindigkeit",
         engine: "Motor",
         weight: "Gewicht"
+      },
+      about: {
+        label: "Wer wir sind",
+        title: "Über",
+        titleAccent: "APEX",
+        intro: "APEX Magazine ist das ultimative Ziel für Automobilenthusiasten, die mehr als oberflächliche Inhalte verlangen. Wir tauchen tief in die Technik, das Design und die Kultur ein, die die Automobilwelt außergewöhnlich machen.",
+        mission: "Gegründet im Jahr 2024, existiert APEX für diejenigen, die Autos nicht nur als Transportmittel sehen — sondern als Kunst, Technologie und Leidenschaft. Wir erforschen die Schnittstelle von Leistung, Innovation und Design durch die Augen von Menschen, die es wirklich verstehen.",
+        features: {
+          technical: {
+            title: "Technische Analyse",
+            description: "Tiefgehende technische Analysen und technische Einblicke"
+          },
+          interviews: {
+            title: "Exklusive Interviews",
+            description: "Exklusive Interviews mit Designern, Ingenieuren und Visionären"
+          },
+          business: {
+            title: "Business-Einblicke",
+            description: "Das Geschäft hinter den Marken"
+          },
+          culture: {
+            title: "Kulturelle Bewegungen",
+            description: "Kulturelle Bewegungen, die die automobile Zukunft prägen"
+          }
+        },
+        why: {
+          title: "Warum",
+          titleAccent: "APEX?",
+          description: "Während andere Trends jagen, jagen wir die Wahrheit. Jeder Artikel wird recherchiert, faktengeprüft und von Menschen geschrieben, die Automobilkultur leben und atmen. Wir machen keinen Clickbait. Wir machen Klarheit."
+        },
+        readers: {
+          title: "Unsere Leser",
+          engineers: "Ingenieure, die sich für Design interessieren",
+          collectors: "Sammler, die Wissen suchen",
+          professionals: "Fachleute in der Branche",
+          enthusiasts: "Enthusiasten, die verstehen wollen, warum ein Auto wichtig ist — nicht nur wie schnell es fährt"
+        },
+        stats: {
+          founded: "Gegründet",
+          articles: "Artikel",
+          readers: "Leser",
+          countries: "Länder"
+        }
       }
     }
   }
