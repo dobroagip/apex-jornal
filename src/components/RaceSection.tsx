@@ -149,7 +149,7 @@ export default function RaceSection() {
               onClick={() => setIsCalendarOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group btn-racing btn-racing-outline flex items-center gap-4"
+              className="group btn-racing btn-racing-outline flex items-center gap-4 relative z-10"
             >
             <span className="relative z-10">{t('race.viewCalendar')}</span>
             <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
