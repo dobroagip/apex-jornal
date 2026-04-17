@@ -170,7 +170,7 @@ const resources = {
           ceo: "S. Kyslytsyn – Editor-in-Chief",
           contactTitle: "Contact:",
           email: "Email: dobrocreate@gmail.com",
-          phone: "Phone: +49 (0) 2691 302-0",
+          phone: "Phone: +380674862117",
           responsibleTitle: "Responsible for content:",
           responsible: "S. Kyslytsyn, Odesa, Ukraine",
           disclaimerTitle: "Disclaimer",
@@ -211,6 +211,16 @@ const resources = {
             content: "We reserve the right to update these Terms at any time."
           }
         }
+      },
+      cookies: {
+        title: "Cookie Notice",
+        intro: "We use cookies to improve your experience.",
+        essential: "Essential cookies are required for the website to function properly.",
+        nonEssential: "Non-essential cookies (analytics, marketing) are used only with your consent.",
+        withdraw: "By clicking \"Accept\", you agree to the use of cookies. You can withdraw your consent at any time.",
+        privacyLink: "For more details, see our Privacy Policy.",
+        accept: "Accept",
+        decline: "Decline"
       }
     }
   },

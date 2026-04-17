@@ -131,7 +131,7 @@ export default function App() {
       <div className="min-h-screen selection:bg-racing-red selection:text-white">
         <SEO />
         <CustomCursor />
-        <CookieConsent />
+        <CookieConsent onLegalClick={() => setView('legal')} />
         
         <AnimatePresence mode="wait">
           {view === 'home' && (
