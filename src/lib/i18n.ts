@@ -47,7 +47,14 @@ const resources = {
         accent: "Inner Circle",
         description: "Get exclusive access to behind-the-scenes content, early race reports, and member-only events.",
         placeholder: "Enter your email",
-        subscribe: "Subscribe"
+        subscribe: "Subscribe",
+        subscribing: "Subscribing...",
+        invalidEmail: "Please enter a valid email address",
+        alreadySubscribed: "This email is already subscribed",
+        successMessage: "Success! Check your email for Telegram bot link to complete subscription.",
+        errorMessage: "Something went wrong. Please try again.",
+        telegramInfo: "Get instant notifications via Telegram! After subscribing, you'll receive a link to connect our bot.",
+        telegramSecure: "Secure & instant notifications"
       },
       article: {
         back: "Back to Journal",
@@ -109,7 +116,14 @@ const resources = {
         accent: "Внутрішнього кола",
         description: "Отримайте ексклюзивний доступ до залаштункового контенту, звітів про перегони та подій лише для учасників.",
         placeholder: "Введіть ваш email",
-        subscribe: "Підписатися"
+        subscribe: "Підписатися",
+        subscribing: "Підписка...",
+        invalidEmail: "Будь ласка, введіть дійсну адресу email",
+        alreadySubscribed: "Цей email вже підписаний",
+        successMessage: "Успіх! Перевірте email для посилання на Telegram бота.",
+        errorMessage: "Щось пішло не так. Спробуйте ще раз.",
+        telegramInfo: "Отримуйте миттєві сповіщення через Telegram! Після підписки ви отримаєте посилання для підключення нашого бота.",
+        telegramSecure: "Безпечні та миттєві сповіщення"
       },
       article: {
         back: "Назад до журналу",
@@ -171,7 +185,14 @@ const resources = {
         accent: "Inneren Kreis bei",
         description: "Erhalten Sie exklusiven Zugang zu Inhalten hinter den Kulissen, frühen Rennberichten und Veranstaltungen nur für Mitglieder.",
         placeholder: "E-Mail eingeben",
-        subscribe: "Abonnieren"
+        subscribe: "Abonnieren",
+        subscribing: "Abonnieren...",
+        invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        alreadySubscribed: "Diese E-Mail ist bereits abonniert",
+        successMessage: "Erfolg! Überprüfen Sie Ihre E-Mail für den Telegram-Bot-Link.",
+        errorMessage: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
+        telegramInfo: "Erhalten Sie sofortige Benachrichtigungen über Telegram! Nach dem Abonnieren erhalten Sie einen Link zu unserem Bot.",
+        telegramSecure: "Sichere und sofortige Benachrichtigungen"
       },
       article: {
         back: "Zurück zum Journal",

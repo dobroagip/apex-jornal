@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ArticleCard from './components/ArticleCard';
 import RaceSection from './components/RaceSection';
+import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import BrandMarquee from './components/BrandMarquee';
@@ -257,46 +258,7 @@ export default function App() {
                 </section>
 
                 {/* Newsletter Section */}
-                <section className="py-32 relative overflow-hidden">
-                  <div className="absolute inset-0 z-0">
-                    <img 
-                      src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=2070" 
-                      alt="Racing Track"
-                      className="w-full h-full object-cover opacity-20 grayscale"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="container mx-auto px-6 relative z-10 text-center">
-                    <motion.div
-                      initial={{ y: 50, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="max-w-3xl mx-auto"
-                    >
-                      <h2 className="text-4xl md:text-6xl font-bold uppercase italic mb-8">
-                        {t('newsletter.title')} <span className="text-racing-red">{t('newsletter.accent')}</span>
-                      </h2>
-                      <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-                        {t('newsletter.description')}
-                      </p>
-                      <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto items-stretch">
-                        <input 
-                          type="email" 
-                          placeholder={t('newsletter.placeholder')}
-                          className="flex-1 bg-white/10 border border-white/20 px-6 py-4 focus:outline-none focus:border-racing-red transition-colors font-medium text-white placeholder:text-gray-500"
-                        />
-                        <motion.button 
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="group btn-racing btn-racing-primary flex items-center justify-center gap-4"
-                        >
-                          <span className="relative z-10">{t('newsletter.subscribe')}</span>
-                          <div className="btn-racing-fill" />
-                        </motion.button>
-                      </div>
-                    </motion.div>
-                  </div>
-                </section>
+                <Newsletter />
               </main>
               <Footer onLegalClick={() => setView('legal')} onAdminClick={() => setView('admin')} />
             </motion.div>
