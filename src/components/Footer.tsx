@@ -41,10 +41,9 @@ export default function Footer({ onLegalClick, onAdminClick }: FooterProps) {
           <div>
             <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest mb-6 md:mb-8 text-racing-red">Sections</h3>
             <ul className="space-y-3 md:space-y-4 text-gray-400 font-medium text-sm md:text-base">
-              <li><a href="#" className="hover:text-white transition-colors">Magazine</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Racing News</a></li>
+              <li><a href="#journal" className="hover:text-white transition-colors">Magazine</a></li>
+              <li><a href="#racing" className="hover:text-white transition-colors">Racing News</a></li>
               <li><button onClick={onAdminClick} className="hover:text-white transition-colors">Submit Article</button></li>
-              <li><a href="#" className="hover:text-white transition-colors">Interviews</a></li>
             </ul>
           </div>
           
