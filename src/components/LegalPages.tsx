@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const LegalPages: React.FC = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Update page title and meta description for SEO
+    document.title = 'Legal Information - APEX Magazine';
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Privacy Policy, Impressum, and Terms of Service for APEX Magazine - Automotive Culture & High-Performance Engineering');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.title = 'APEX Magazine - Automotive Culture & High-Performance Engineering';
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'The definitive source for automotive culture, high-performance engineering, and the pursuit of speed.');
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-racing-black text-white min-h-screen pt-32 pb-20 px-6">

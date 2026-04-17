@@ -67,7 +67,7 @@ export default function Footer({ onLegalClick, onAdminClick }: FooterProps) {
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             <button onClick={onLegalClick} className="hover:text-white transition-colors">Privacy Policy</button>
             <button onClick={onLegalClick} className="hover:text-white transition-colors">Impressum</button>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <button onClick={onLegalClick} className="hover:text-white transition-colors">Terms of Service</button>
           </div>
         </div>
       </div>
