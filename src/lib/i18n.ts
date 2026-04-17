@@ -112,6 +112,58 @@ const resources = {
           readers: "Readers",
           countries: "Countries"
         }
+      },
+      legal: {
+        gdpr: {
+          title: "GDPR / Privacy Policy",
+          updated: "Last updated: April 17, 2026",
+          intro: "At APEX Magazine, we take your privacy seriously. This policy explains how we collect, use, and protect your personal data in compliance with the General Data Protection Regulation (GDPR).",
+          section1: {
+            title: "1. Data Collection",
+            content: "We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us. This may include your name, email address, and IP address."
+          },
+          section2: {
+            title: "2. Use of Data",
+            content: "We use your data to provide our services, personalize your experience, and communicate with you about updates and promotions."
+          },
+          section3: {
+            title: "3. Your Rights",
+            content: "Under GDPR, you have the right to access, rectify, or erase your personal data. You can also object to processing and request data portability."
+          }
+        },
+        impressum: {
+          title: "Impressum / Legal Notice",
+          tmg: "Information according to § 5 TMG:",
+          company: "APEX Media Group GmbH",
+          address1: "Nürburgring Boulevard 1",
+          address2: "53520 Nürburg, Germany",
+          represented: "Represented by:",
+          ceo: "Max Verstappen, CEO",
+          contactTitle: "Contact:",
+          email: "Email: dobrocreate@gmail.com",
+          phone: "Phone: +49 (0) 2691 302-0",
+          registerTitle: "Register Entry:",
+          registerEntry: "Entry in the Handelsregister.",
+          registerCourt: "Registering court: Amtsgericht Koblenz",
+          registerNumber: "Registration number: HRB 12345"
+        },
+        terms: {
+          title: "Terms of Service",
+          updated: "Last updated: April 17, 2026",
+          intro: "Welcome to APEX Magazine. By accessing our website, you agree to these terms of service and our privacy policy.",
+          section1: {
+            title: "1. Acceptance of Terms",
+            content: "By using this website, you accept these terms in full. If you disagree with any part of these terms, you must not use our website."
+          },
+          section2: {
+            title: "2. Intellectual Property",
+            content: "All content on this website, including text, graphics, logos, and images, is the property of APEX Magazine and protected by copyright laws."
+          },
+          section3: {
+            title: "3. Limitation of Liability",
+            content: "APEX Magazine will not be liable for any damages arising from the use of this website or inability to use it."
+          }
+        }
       }
     }
   },
@@ -224,6 +276,58 @@ const resources = {
           readers: "Читачів",
           countries: "Країн"
         }
+      },
+      legal: {
+        gdpr: {
+          title: "GDPR / Політика конфіденційності",
+          updated: "Останнє оновлення: 17 квітня 2026",
+          intro: "У APEX Magazine ми серйозно ставимося до вашої конфіденційності. Ця політика пояснює, як ми збираємо, використовуємо та захищаємо ваші персональні дані відповідно до Загального регламенту захисту даних (GDPR).",
+          section1: {
+            title: "1. Збір даних",
+            content: "Ми збираємо інформацію, яку ви надаєте нам безпосередньо, наприклад, коли ви створюєте обліковий запис, підписуєтесь на нашу розсилку або зв'язуєтесь з нами. Це може включати ваше ім'я, адресу електронної пошти та IP-адресу."
+          },
+          section2: {
+            title: "2. Використання даних",
+            content: "Ми використовуємо ваші дані для надання наших послуг, персоналізації вашого досвіду та спілкування з вами про оновлення та акції."
+          },
+          section3: {
+            title: "3. Ваші права",
+            content: "Відповідно до GDPR, ви маєте право на доступ, виправлення або видалення ваших персональних даних. Ви також можете заперечувати проти обробки та запитувати переносимість даних."
+          }
+        },
+        impressum: {
+          title: "Impressum / Юридична інформація",
+          tmg: "Інформація відповідно до § 5 TMG:",
+          company: "APEX Media Group GmbH",
+          address1: "Nürburgring Boulevard 1",
+          address2: "53520 Nürburg, Germany",
+          represented: "Представлений:",
+          ceo: "Max Verstappen, CEO",
+          contactTitle: "Контакти:",
+          email: "Email: dobrocreate@gmail.com",
+          phone: "Телефон: +49 (0) 2691 302-0",
+          registerTitle: "Реєстраційний запис:",
+          registerEntry: "Запис у Handelsregister.",
+          registerCourt: "Реєстраційний суд: Amtsgericht Koblenz",
+          registerNumber: "Реєстраційний номер: HRB 12345"
+        },
+        terms: {
+          title: "Умови використання",
+          updated: "Останнє оновлення: 17 квітня 2026",
+          intro: "Ласкаво просимо до APEX Magazine. Отримуючи доступ до нашого веб-сайту, ви погоджуєтесь з цими умовами обслуговування та нашою політикою конфіденційності.",
+          section1: {
+            title: "1. Прийняття умов",
+            content: "Використовуючи цей веб-сайт, ви повністю приймаєте ці умови. Якщо ви не згодні з будь-якою частиною цих умов, ви не повинні використовувати наш веб-сайт."
+          },
+          section2: {
+            title: "2. Інтелектуальна власність",
+            content: "Весь вміст цього веб-сайту, включаючи текст, графіку, логотипи та зображення, є власністю APEX Magazine та захищений законами про авторське право."
+          },
+          section3: {
+            title: "3. Обмеження відповідальності",
+            content: "APEX Magazine не несе відповідальності за будь-які збитки, що виникають внаслідок використання цього веб-сайту або неможливості його використання."
+          }
+        }
       }
     }
   },
@@ -335,6 +439,58 @@ const resources = {
           articles: "Artikel",
           readers: "Leser",
           countries: "Länder"
+        }
+      },
+      legal: {
+        gdpr: {
+          title: "DSGVO / Datenschutzerklärung",
+          updated: "Zuletzt aktualisiert: 17. April 2026",
+          intro: "Bei APEX Magazine nehmen wir Ihre Privatsphäre ernst. Diese Richtlinie erklärt, wie wir Ihre personenbezogenen Daten in Übereinstimmung mit der Datenschutz-Grundverordnung (DSGVO) sammeln, verwenden und schützen.",
+          section1: {
+            title: "1. Datenerfassung",
+            content: "Wir sammeln Informationen, die Sie uns direkt zur Verfügung stellen, z. B. wenn Sie ein Konto erstellen, unseren Newsletter abonnieren oder uns kontaktieren. Dies kann Ihren Namen, Ihre E-Mail-Adresse und Ihre IP-Adresse umfassen."
+          },
+          section2: {
+            title: "2. Verwendung von Daten",
+            content: "Wir verwenden Ihre Daten, um unsere Dienste bereitzustellen, Ihr Erlebnis zu personalisieren und mit Ihnen über Updates und Werbeaktionen zu kommunizieren."
+          },
+          section3: {
+            title: "3. Ihre Rechte",
+            content: "Gemäß DSGVO haben Sie das Recht auf Zugang, Berichtigung oder Löschung Ihrer personenbezogenen Daten. Sie können auch der Verarbeitung widersprechen und Datenübertragbarkeit verlangen."
+          }
+        },
+        impressum: {
+          title: "Impressum / Rechtliche Hinweise",
+          tmg: "Angaben gemäß § 5 TMG:",
+          company: "APEX Media Group GmbH",
+          address1: "Nürburgring Boulevard 1",
+          address2: "53520 Nürburg, Deutschland",
+          represented: "Vertreten durch:",
+          ceo: "Max Verstappen, Geschäftsführer",
+          contactTitle: "Kontakt:",
+          email: "E-Mail: dobrocreate@gmail.com",
+          phone: "Telefon: +49 (0) 2691 302-0",
+          registerTitle: "Registereintrag:",
+          registerEntry: "Eintragung im Handelsregister.",
+          registerCourt: "Registergericht: Amtsgericht Koblenz",
+          registerNumber: "Registernummer: HRB 12345"
+        },
+        terms: {
+          title: "Nutzungsbedingungen",
+          updated: "Zuletzt aktualisiert: 17. April 2026",
+          intro: "Willkommen bei APEX Magazine. Durch den Zugriff auf unsere Website stimmen Sie diesen Nutzungsbedingungen und unserer Datenschutzrichtlinie zu.",
+          section1: {
+            title: "1. Annahme der Bedingungen",
+            content: "Durch die Nutzung dieser Website akzeptieren Sie diese Bedingungen vollständig. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, dürfen Sie unsere Website nicht nutzen."
+          },
+          section2: {
+            title: "2. Geistiges Eigentum",
+            content: "Alle Inhalte auf dieser Website, einschließlich Text, Grafiken, Logos und Bilder, sind Eigentum von APEX Magazine und durch Urheberrechtsgesetze geschützt."
+          },
+          section3: {
+            title: "3. Haftungsbeschränkung",
+            content: "APEX Magazine haftet nicht für Schäden, die durch die Nutzung dieser Website oder die Unmöglichkeit ihrer Nutzung entstehen."
+          }
         }
       }
     }

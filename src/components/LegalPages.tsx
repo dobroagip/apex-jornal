@@ -10,48 +10,67 @@ const LegalPages: React.FC = () => {
         {/* GDPR Section */}
         <section id="gdpr" className="space-y-8">
           <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter border-l-4 border-racing-red pl-6">
-            GDPR / Privacy Policy
+            {t('legal.gdpr.title')}
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-            <p>Last updated: April 13, 2026</p>
-            <p>
-              At APEX Magazine, we take your privacy seriously. This policy explains how we collect, use, and protect your personal data in compliance with the General Data Protection Regulation (GDPR).
-            </p>
-            <h2 className="text-white font-bold text-xl mt-8">1. Data Collection</h2>
-            <p>We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us. This may include your name, email address, and IP address.</p>
-            
-            <h2 className="text-white font-bold text-xl mt-8">2. Use of Data</h2>
-            <p>We use your data to provide our services, personalize your experience, and communicate with you about updates and promotions.</p>
-            
-            <h2 className="text-white font-bold text-xl mt-8">3. Your Rights</h2>
-            <p>Under GDPR, you have the right to access, rectify, or erase your personal data. You can also object to processing and request data portability.</p>
+            <p>{t('legal.gdpr.updated')}</p>
+            <p>{t('legal.gdpr.intro')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section1.title')}</h2>
+            <p>{t('legal.gdpr.section1.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section2.title')}</h2>
+            <p>{t('legal.gdpr.section2.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section3.title')}</h2>
+            <p>{t('legal.gdpr.section3.content')}</p>
           </div>
         </section>
 
         {/* Impressum Section */}
         <section id="impressum" className="space-y-8">
           <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter border-l-4 border-racing-red pl-6">
-            Impressum / Legal Notice
+            {t('legal.impressum.title')}
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-            <p>Information according to § 5 TMG:</p>
+            <p>{t('legal.impressum.tmg')}</p>
             <div className="space-y-2">
-              <p className="font-bold text-white">APEX Media Group GmbH</p>
-              <p>Nürburgring Boulevard 1</p>
-              <p>53520 Nürburg, Germany</p>
+              <p className="font-bold text-white">{t('legal.impressum.company')}</p>
+              <p>{t('legal.impressum.address1')}</p>
+              <p>{t('legal.impressum.address2')}</p>
             </div>
-            
-            <h2 className="text-white font-bold text-xl mt-8">Represented by:</h2>
-            <p>Max Verstappen, CEO</p>
-            
-            <h2 className="text-white font-bold text-xl mt-8">Contact:</h2>
-            <p>Email: legal@apex-magazine.com</p>
-            <p>Phone: +49 (0) 2691 302-0</p>
-            
-            <h2 className="text-white font-bold text-xl mt-8">Register Entry:</h2>
-            <p>Entry in the Handelsregister.</p>
-            <p>Registering court: Amtsgericht Koblenz</p>
-            <p>Registration number: HRB 12345</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.represented')}</h2>
+            <p>{t('legal.impressum.ceo')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.contactTitle')}</h2>
+            <p>{t('legal.impressum.email')}</p>
+            <p>{t('legal.impressum.phone')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.registerTitle')}</h2>
+            <p>{t('legal.impressum.registerEntry')}</p>
+            <p>{t('legal.impressum.registerCourt')}</p>
+            <p>{t('legal.impressum.registerNumber')}</p>
+          </div>
+        </section>
+
+        {/* Terms of Service Section */}
+        <section id="terms" className="space-y-8">
+          <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter border-l-4 border-racing-red pl-6">
+            {t('legal.terms.title')}
+          </h1>
+          <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
+            <p>{t('legal.terms.updated')}</p>
+            <p>{t('legal.terms.intro')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section1.title')}</h2>
+            <p>{t('legal.terms.section1.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section2.title')}</h2>
+            <p>{t('legal.terms.section2.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section3.title')}</h2>
+            <p>{t('legal.terms.section3.content')}</p>
           </div>
         </section>
       </div>
@@ -60,3 +79,4 @@ const LegalPages: React.FC = () => {
 };
 
 export default LegalPages;
+
