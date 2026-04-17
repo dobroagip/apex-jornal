@@ -115,65 +115,100 @@ const resources = {
       },
       legal: {
         gdpr: {
-          title: "GDPR / Privacy Policy",
+          title: "Privacy Policy",
           updated: "Last updated: April 17, 2026",
-          intro: "At APEX Magazine, we take your privacy seriously. This policy explains how we collect, use, and protect your personal data in compliance with the General Data Protection Regulation (GDPR).",
+          intro: "At APEX Magazine, we respect your privacy and are committed to protecting your personal data in accordance with the General Data Protection Regulation (GDPR).",
           section1: {
-            title: "1. Data Collection",
-            content: "We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us. This may include your name, email address, and IP address."
+            title: "1. Data Controller",
+            content: "Private Enterprise \"Dobrobut\"\n4 V. Chornovola St.\nOdesa, 65012\nUkraine\nEDRPOU: 30587493\nEmail: dobrocreate@gmail.com"
           },
           section2: {
-            title: "2. Use of Data",
-            content: "We use your data to provide our services, personalize your experience, and communicate with you about updates and promotions."
+            title: "2. Personal Data We Collect",
+            content: "We may collect the following personal data: Name, Email address, IP address, Usage data (e.g., pages visited, interactions)."
           },
           section3: {
-            title: "3. Your Rights",
-            content: "Under GDPR, you have the right to access, rectify, or erase your personal data. You can also object to processing and request data portability."
+            title: "3. Legal Basis for Processing",
+            content: "We process personal data based on: Art. 6(1)(a) GDPR – your consent (e.g. newsletter), Art. 6(1)(b) GDPR – performance of a contract, Art. 6(1)(f) GDPR – legitimate interests (security, analytics, website improvement)."
+          },
+          section4: {
+            title: "4. How We Use Your Data",
+            content: "We use your data to: Provide and maintain our website, Communicate with you, Improve user experience, Send updates and marketing (only with consent)."
+          },
+          section5: {
+            title: "5. Cookies and Tracking Technologies",
+            content: "We use cookies and similar technologies to operate the website and analyze traffic. Non-essential cookies are used only with your consent."
+          },
+          section6: {
+            title: "6. Data Sharing",
+            content: "We may share your data with: Hosting providers, Analytics services, Email service providers. All third parties are required to protect your data."
+          },
+          section7: {
+            title: "7. International Data Transfers",
+            content: "As our company is based in Ukraine, your data may be transferred outside the European Economic Area (EEA). We ensure appropriate safeguards in accordance with GDPR."
+          },
+          section8: {
+            title: "8. Data Retention",
+            content: "We retain personal data only as long as necessary or required by law."
+          },
+          section9: {
+            title: "9. Your Rights",
+            content: "You have the right to: Access your data, Rectify inaccurate data, Request erasure, Restrict processing, Data portability, Object to processing. You also have the right to lodge a complaint with a supervisory authority in the EU."
+          },
+          section10: {
+            title: "10. Contact",
+            content: "For privacy-related requests, contact us at: dobrocreate@gmail.com"
           }
         },
         impressum: {
           title: "Impressum / Legal Notice",
-          tmg: "Information according to § 5 TMG:",
-          company: "APEX Media Group GmbH",
-          address1: "Nürburgring Boulevard 1",
-          address2: "53520 Nürburg, Germany",
+          company: "Private Enterprise \"Dobrobut\"",
+          edrpou: "EDRPOU Code: 30587493",
+          addressTitle: "Registered Address:",
+          address1: "4 V. Chornovola St.",
+          address2: "Odesa, 65012, Ukraine",
           represented: "Represented by:",
-          ceo: "Max Verstappen, CEO",
+          ceo: "S. Kyslytsyn – Editor-in-Chief",
           contactTitle: "Contact:",
           email: "Email: dobrocreate@gmail.com",
           phone: "Phone: +49 (0) 2691 302-0",
-          registerTitle: "Register Entry:",
-          registerEntry: "Entry in the Handelsregister.",
-          registerCourt: "Registering court: Amtsgericht Koblenz",
-          registerNumber: "Registration number: HRB 12345"
+          responsibleTitle: "Responsible for content:",
+          responsible: "S. Kyslytsyn, Odesa, Ukraine",
+          disclaimerTitle: "Disclaimer",
+          disclaimer: "The content of our website has been created with great care. However, we do not guarantee the accuracy, completeness or timeliness of the content.",
+          linksTitle: "External Links",
+          links: "Our website contains links to external websites. We have no influence on their content and assume no liability for such external content. If we become aware of any legal violations, we will remove such links immediately."
         },
         terms: {
           title: "Terms of Service",
           updated: "Last updated: April 17, 2026",
-          intro: "By accessing and using APEX Magazine (the \"Site\"), you agree to be bound by these Terms of Service. If you do not agree, please refrain from using the Site.",
+          intro: "By accessing and using APEX Magazine (the \"Site\"), you agree to these Terms of Service.",
           section1: {
-            title: "1. Acceptance of Terms",
-            content: "By accessing and using APEX Magazine, you agree to be bound by these Terms of Service. If you do not agree, please refrain from using the Site."
+            title: "1. Use of the Website",
+            content: "You agree to use the Site only for lawful purposes."
           },
           section2: {
             title: "2. Intellectual Property",
-            content: "All content published on this Site, including but not limited to articles, photographs, logos, and graphic designs, is the property of APEX Magazine and protected by international copyright laws. Unauthorized reproduction or distribution of any materials is strictly prohibited."
+            content: "All content (texts, images, logos, graphics) is the property of APEX Magazine and protected by copyright laws. Unauthorized use is prohibited."
           },
           section3: {
-            title: "3. External Links and Third-Party Content",
-            content: "The Site contains links to external websites, including e-commerce platforms like Bardahl Ukraine and Automall. APEX Magazine does not control, endorse, or assume responsibility for the content, privacy policies, or practices of any third-party websites. Any transactions or interactions between you and a third-party site are solely between you and that third party."
+            title: "3. External Links",
+            content: "The Site may contain links to third-party websites. We are not responsible for their content or practices."
           },
           section4: {
-            title: "4. Advertising and Link Placement Services",
-            content: "APEX Magazine offers paid advertising, sponsored content, and link placement services. Sponsored content and paid links will be clearly marked as \"Sponsored\" or \"Advertisement.\" The inclusion of a paid link does not constitute a guarantee of the third party's products or services."
+            title: "4. Advertising and Sponsored Content",
+            content: "We offer advertising and sponsored content. All such content will be clearly marked as \"Sponsored\" or \"Advertisement\"."
           },
           section5: {
             title: "5. Disclaimer of Liability",
-            content: "The content on APEX Magazine is for informational and entertainment purposes only. While we strive for accuracy, we are not liable for any technical inaccuracies or for any damages resulting from the use of automotive advice or maintenance tips provided in our articles."
+            content: "The content is provided for informational purposes only. We are liable for damages only in cases of intent or gross negligence. This does not apply to damages resulting from injury to life, body, or health."
           },
           section6: {
             title: "6. Governing Law",
-            content: "These Terms are governed by the laws of Ukraine. Any disputes shall be resolved in the courts of Kyiv, Ukraine."
+            content: "These Terms are governed by the laws of Ukraine. If you are a consumer residing in the European Union, mandatory consumer protection laws of your country of residence remain unaffected."
+          },
+          section7: {
+            title: "7. Changes to Terms",
+            content: "We reserve the right to update these Terms at any time."
           }
         }
       }

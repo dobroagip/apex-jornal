@@ -31,17 +31,38 @@ const LegalPages: React.FC = () => {
             {t('legal.gdpr.title')}
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-            <p>{t('legal.gdpr.updated')}</p>
-            <p>{t('legal.gdpr.intro')}</p>
+            <p className="text-sm text-gray-500">{t('legal.gdpr.updated')}</p>
+            <p className="mt-4">{t('legal.gdpr.intro')}</p>
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section1.title')}</h2>
-            <p>{t('legal.gdpr.section1.content')}</p>
+            <p className="whitespace-pre-line">{t('legal.gdpr.section1.content')}</p>
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section2.title')}</h2>
             <p>{t('legal.gdpr.section2.content')}</p>
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section3.title')}</h2>
             <p>{t('legal.gdpr.section3.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section4.title')}</h2>
+            <p>{t('legal.gdpr.section4.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section5.title')}</h2>
+            <p>{t('legal.gdpr.section5.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section6.title')}</h2>
+            <p>{t('legal.gdpr.section6.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section7.title')}</h2>
+            <p>{t('legal.gdpr.section7.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section8.title')}</h2>
+            <p>{t('legal.gdpr.section8.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section9.title')}</h2>
+            <p>{t('legal.gdpr.section9.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.gdpr.section10.title')}</h2>
+            <p>{t('legal.gdpr.section10.content')}</p>
           </div>
         </section>
 
@@ -51,12 +72,14 @@ const LegalPages: React.FC = () => {
             {t('legal.impressum.title')}
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-            <p>{t('legal.impressum.tmg')}</p>
             <div className="space-y-2">
               <p className="font-bold text-white">{t('legal.impressum.company')}</p>
-              <p>{t('legal.impressum.address1')}</p>
-              <p>{t('legal.impressum.address2')}</p>
+              <p>{t('legal.impressum.edrpou')}</p>
             </div>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.addressTitle')}</h2>
+            <p>{t('legal.impressum.address1')}</p>
+            <p>{t('legal.impressum.address2')}</p>
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.represented')}</h2>
             <p>{t('legal.impressum.ceo')}</p>
@@ -65,10 +88,14 @@ const LegalPages: React.FC = () => {
             <p>{t('legal.impressum.email')}</p>
             <p>{t('legal.impressum.phone')}</p>
 
-            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.registerTitle')}</h2>
-            <p>{t('legal.impressum.registerEntry')}</p>
-            <p>{t('legal.impressum.registerCourt')}</p>
-            <p>{t('legal.impressum.registerNumber')}</p>
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.responsibleTitle')}</h2>
+            <p>{t('legal.impressum.responsible')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.disclaimerTitle')}</h2>
+            <p>{t('legal.impressum.disclaimer')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.impressum.linksTitle')}</h2>
+            <p>{t('legal.impressum.links')}</p>
           </div>
         </section>
 
@@ -78,8 +105,8 @@ const LegalPages: React.FC = () => {
             {t('legal.terms.title')}
           </h1>
           <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-            <p>{t('legal.terms.updated')}</p>
-            <p>{t('legal.terms.intro')}</p>
+            <p className="text-sm text-gray-500">{t('legal.terms.updated')}</p>
+            <p className="mt-4">{t('legal.terms.intro')}</p>
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section1.title')}</h2>
             <p>{t('legal.terms.section1.content')}</p>
@@ -98,6 +125,9 @@ const LegalPages: React.FC = () => {
 
             <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section6.title')}</h2>
             <p>{t('legal.terms.section6.content')}</p>
+
+            <h2 className="text-white font-bold text-xl mt-8">{t('legal.terms.section7.title')}</h2>
+            <p>{t('legal.terms.section7.content')}</p>
           </div>
         </section>
       </div>
